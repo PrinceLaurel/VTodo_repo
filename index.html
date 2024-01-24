@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <title>Vue todolist</title>
+</head>
+<body>
+   
+  <div id="app">
+    <input v-model="newTodo" type="text" placeholder="write todo">
+    <button v-on:click="addTodo" class="add-button">Add</button>
+
+    <ol>
+        <li v-for="(todo, index) in listTodo" :key="index">{{ todo }}
+            <button v-on:click="deleteTodo(index)" class="del-button">Delete</button>
+        </li>
+    </ol>
+    
+  </div>
+<script>
+    const app = Vue.createApp({
+    data() {
+        return {
+            newTodo: '',
+            listTodo: []
+        };
+    },
+    methods: {
+        addTodo() {
+            if (this.newTodo.trim() !== '') {
+                this.listTodo.push(this.newTodo);
+                this.newTodo = ''; 
+            }
+        },
+        deleteTodo(index) {
+            this.listTodo.splice(index, 1);
+        }
+    }
+});
+app.mount('#app')
+</script>
+
+</body>
+</html>
