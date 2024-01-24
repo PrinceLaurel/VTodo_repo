@@ -29,6 +29,18 @@ const app = Vue.createApp({
     cancelEdit() {
         this.editingIndex = -1;
         this.editedTodo = '';
+    },
+    markDone(index) {
+        const task = this.listTodo.splice(index, 1)[0];
+        this.listDone.push(task);
+
+        if (taskIndexInDone === -1) {
+            this.listDone.push(task);
+        }
+    },
+    moveToTodo(index) {
+        const moveBackTask = this.listDone.splice(index, 1)[0];
+        this.listTodo.push(moveBackTask);
     }
 }
 });
