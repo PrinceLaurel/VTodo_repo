@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 
     <title>Vue todolist</title>
@@ -14,44 +14,15 @@
     <input v-model="newTodo" type="text" placeholder="write todo">
     <button v-on:click="addTodo" class="add-button">Add</button>
 
-    <ol>
-        <li v-for="(todo, index) in listTodo" :key="index">
-            <span v-if="index !== editingIndex">{{ todo }}</span>
-            <input v-if="index == editingIndex" v-model="editedTodo" type="text">
-            <button v-on:click="deleteTodo(index)" class="del-button">Delete</button>
-            <button v-on:click="editTodo(index)" class="edit-button">Edit</button>
-        </li>
-    </ol>
-    
-  </div>
-<script>
-    const app = Vue.createApp({
-    data() {
-        return {
-            newTodo: '',
-            listTodo: [],
-            editingIndex: -1,
-            editedTodo: ''
-        };
-    },
-    methods: {
-        addTodo() {
-            if (this.newTodo.trim() !== '') {
-                this.listTodo.push(this.newTodo);
-                this.newTodo = ''; 
-            }
-        },
-        deleteTodo(index) {
-            this.listTodo.splice(index, 1);
-        },
-        editTodo(index) {
-            this.editingIndex = index;
-            this.editedTodo = this.listTodo[index];
-        }
-    }
-});
-app.mount('#app')
-</script>
+        <div v-for="(todo, index) in listTodo" :key="index" class="todo-item">
+            <span v-if="index !== editingIndex"> {{ index + 1 }}. {{ todo }}</span>
+            <input v-if="index === editingIndex" v-model="editedTodo" type="text" placeholder="edit todo">
 
+            <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button">Delete</button>
+            <button v-show="index !== editingIndex" v-on:click="editTodo(index)" class="edit-button">Edit</button>
+            <button v-show="index === editingIndex" v-on:click="saveEdit(index)" class="save-button">Save</button>
+        </div>
+  </div>
+<script src="./public/main.js"></script>
 </body>
 </html>
