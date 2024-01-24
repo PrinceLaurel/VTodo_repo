@@ -15,8 +15,11 @@
     <button v-on:click="addTodo" class="add-button">Add</button>
 
     <ol>
-        <li v-for="(todo, index) in listTodo" :key="index">{{ todo }}
+        <li v-for="(todo, index) in listTodo" :key="index">
+            <span v-if="index !== editingIndex">{{ todo }}</span>
+            <input v-if="index == editingIndex" v-model="editedTodo" type="text">
             <button v-on:click="deleteTodo(index)" class="del-button">Delete</button>
+            <button v-on:click="editTodo(index)" class="edit-button">Edit</button>
         </li>
     </ol>
     
@@ -26,7 +29,9 @@
     data() {
         return {
             newTodo: '',
-            listTodo: []
+            listTodo: [],
+            editingIndex: -1,
+            editedTodo: ''
         };
     },
     methods: {
@@ -38,6 +43,10 @@
         },
         deleteTodo(index) {
             this.listTodo.splice(index, 1);
+        },
+        editTodo(index) {
+            this.editingIndex = index;
+            this.editedTodo = this.listTodo[index];
         }
     }
 });
