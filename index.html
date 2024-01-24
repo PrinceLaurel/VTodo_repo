@@ -9,7 +9,6 @@
     <title>Vue todolist</title>
 </head>
 <body>
-   
   <div id="app">
     <input v-model="newTodo" type="text" placeholder="write todo">
     <button v-on:click="addTodo" class="add-button">Add</button>
@@ -18,8 +17,8 @@
             <span v-if="index !== editingIndex"> {{ index + 1 }}. {{ todo }}</span>
             <input v-if="index === editingIndex" v-model="editedTodo" type="text" placeholder="edit todo">
 
-            <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button">Delete</button>
             <button v-show="index !== editingIndex" v-on:click="editTodo(index)" class="edit-button">Edit</button>
+            <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button">Delete</button>
             <button v-show="index === editingIndex" v-on:click="saveEdit(index)" class="save-button">Save</button>
         </div>
   </div>
