@@ -14,34 +14,33 @@
     <input v-model="newTodo" type="text" placeholder="write todo">
     <button v-on:click="addTodo" class="add-button">Add</button>
 
-    <ol>
-        <li v-for="(todo, index) in listTodo" :key="index">{{ todo }}
-            <button v-on:click="deleteTodo(index)" class="del-button">Delete</button>
-        </li>
-    </ol>
+    <div v-for="(todo, index) in listTodo" :key="index" class="todo-item">
+        {{ index + 1 }}. {{ todo }}
+        <button v-on:click="deleteTodo(index)" class="del-button">Delete</button>
+    </div>
     
   </div>
 <script>
     const app = Vue.createApp({
-    data() {
-        return {
-            newTodo: '',
-            listTodo: []
-        };
-    },
-    methods: {
-        addTodo() {
-            if (this.newTodo.trim() !== '') {
-                this.listTodo.push(this.newTodo);
-                this.newTodo = ''; 
-            }
+        data() {
+            return {
+                newTodo: '',
+                listTodo: []
+            };
         },
-        deleteTodo(index) {
-            this.listTodo.splice(index, 1);
+        methods: {
+            addTodo() {
+                if (this.newTodo.trim() !== '') {
+                    this.listTodo.push(this.newTodo);
+                    this.newTodo = ''; 
+                }
+            },
+            deleteTodo(index) {
+                this.listTodo.splice(index, 1);
+            }
         }
-    }
-});
-app.mount('#app')
+    });
+    app.mount('#app');
 </script>
 
 </body>
