@@ -1,47 +1,59 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 20px;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-h1 {
-    color: #333;
+#app {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
+input {
+    width: calc(100% - 12px);
+    padding: 8px;
     margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-.completed {
-    text-decoration: line-through;
-}
-
-.add-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px;
+button {
+    padding: 8px;
+    background-color: #4caf50;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
 }
 
-.add-button:hover {
+button:hover {
     background-color: #45a049;
 }
 
-.del-button {
-    background-color: #af4c4c;
-    color: white;
+.todo-item {
+    margin-bottom: 10px;
     padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.del-button {
+    background-color: #d9534f;
 }
 
 .del-button:hover {
-    background-color: #5d0000;
+    background-color: #c9302c;
 }
+
+
