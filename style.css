@@ -27,6 +27,10 @@ body {
     margin-bottom: 10px;
 }
 
+.todo-container {
+    max-height: 300px; /* Set your desired fixed height */
+    overflow-y: auto;
+}
 span {
     display: inline-block;
     overflow: hidden;
@@ -63,15 +67,6 @@ button:hover {
     background-color: #45a049;
 }
 
-#buttons  {
-    width: 100px;
-    margin-left: 80px;
-}
-
-#buttons button {
-    padding: 10px;
-}
-
 .todo-item {
     margin-bottom: 10px;
     padding: 10px;
@@ -80,18 +75,6 @@ button:hover {
     border-radius: 4px;
     align-items: center;
 
-}
-.text-container {
-    flex-grow: 1;
-    max-width: 60%; /* Set a maximum width for the text container */
-    word-wrap: break-word; /* Allow long words to be broken and wrap to the next line */
-}
-
-.btn-div {
-    display: flex;
-    gap: 5px;
-    flex-direction: column;
-    flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
 }
 
 .del-button {
@@ -102,9 +85,19 @@ button:hover {
     background-color: #c9302c;
 }
 
+.del-button2 {
+    background-color: #d9534f;
+    margin-right: 4%;
+}
+
+.del-button2:hover {
+    background-color: #c9302c;
+}
+
 .undone-button {
     width: 25%;
-    background-color:#d9534f;
+    background-color:#e49928;
+    margin-right: 4%;
 }
 
 .done-button {

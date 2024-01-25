@@ -15,22 +15,27 @@
     <input v-model="newTodo" type="text" placeholder="Write your to-do...">
     <button v-on:click="addTodo" class="add-button"><i class="fa-solid fa-file-circle-plus"></i></button>
 
+    <!-- Container for to-do items -->
+    <div class="todo-container">
         <div v-for="(todo, index) in listTodo" :key="index" class="todo-item">
             <span v-if="index !== editingIndex"> {{ index + 1 }}. {{ todo }}  </span>
-              <button v-show="index !== editingIndex" v-on:click="editTodo(index)" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
-              <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button"><i class="fa-solid fa-trash"></i></button>
-              <button v-show="index !== editingIndex" v-on:click="markDone(index)" class="done-button"><i class="fa-regular fa-square-check"></i></button>
-              <button v-show="index === editingIndex" v-on:click="saveEdit(index)" class="save-button"><i class="fa-regular fa-square-check"></i></button>
+            <button v-show="index !== editingIndex" v-on:click="editTodo(index)" class="edit-button"><i class="fa-solid fa-pen-to-square"></i></button>
+            <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button"><i class="fa-solid fa-trash"></i></button>
+            <button v-show="index !== editingIndex" v-on:click="markDone(index)" class="done-button"><i class="fa-regular fa-square-check"></i></button>
+            <button v-show="index === editingIndex" v-on:click="saveEdit(index)" class="save-button"><i class="fa-regular fa-square-check"></i></button>
             <input v-if="index === editingIndex" v-model="editedTodo" type="text" placeholder="edit todo">
-              <div id="buttons">
-            </div>
         </div>
-<h2>Completed Tasks</h2>
-        <div v-for="(done, index) in listDone" :key="index"> {{ done }} (Completed)
-          <button v-on:click="moveToTodo(index)" class="undone-button"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
-        </div>
-  </div>
 
+        <div>
+        <h2 v-show="listDone.length > 0">Completed Tasks</h2>
+        <div v-for="(done, index) in listDone" :key="index" class="todo-item">
+            <span> {{ done }} (Completed) </span>
+            <button v-on:click="moveToTodo(index)" class="undone-button"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
+            <button v-on:click="deleteDone(index)" class="del-button2"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    </div>
+</div>
 <script src="./public/main.js"></script>
 </body>
 </html>
