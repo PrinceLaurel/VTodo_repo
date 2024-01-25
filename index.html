@@ -26,6 +26,7 @@
 <h2>Completed Tasks</h2>
         <div v-for="(done, index) in listDone" :key="index"> {{ done }} (Completed)
           <button v-on:click="moveToTodo(index)" class="undone-button">Undone</button>
+          <button v-on:click="deleteDone(index)" class="del-button">Delete</button>
         </div>
   </div>
 <script src="./public/main.js"></script>

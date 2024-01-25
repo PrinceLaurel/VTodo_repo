@@ -18,6 +18,9 @@ const app = Vue.createApp({
     deleteTodo(index) {
         this.listTodo.splice(index, 1);
     },
+    deleteDone(index) {
+        this.listDone.splice(index, 1);
+    },
     editTodo(index) {
         this.editingIndex = index;
         this.editedTodo = this.listTodo[index];
