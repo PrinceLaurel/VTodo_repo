@@ -14,15 +14,18 @@
     <button v-on:click="addTodo" class="add-button">Add</button>
 
         <div v-for="(todo, index) in listTodo" :key="index" class="todo-item">
+          <div class="text-container">
             <span v-if="index !== editingIndex"> {{ index + 1 }}. {{ todo }}
-              <button v-on:click="markDone(index)" class="done-button">Done</button>
             </span>
             <input v-if="index === editingIndex" v-model="editedTodo" type="text" placeholder="edit todo">
-
+          </div>
+            <div class="btn-div">
+            <button v-on:click="markDone(index)" class="done-button">Done</button>
             <button v-show="index !== editingIndex" v-on:click="editTodo(index)" class="edit-button">Edit</button>
             <button v-show="index !== editingIndex" v-on:click="deleteTodo(index)" class="del-button">Delete</button>
             <button v-show="index === editingIndex" v-on:click="saveEdit(index)" class="save-button">Save</button>
-        </div>
+          </div>
+          </div>
 <h2>Completed Tasks</h2>
         <div v-for="(done, index) in listDone" :key="index"> {{ done }} (Completed)
           <button v-on:click="moveToTodo(index)" class="undone-button">Undone</button>

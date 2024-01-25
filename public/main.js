@@ -12,39 +12,60 @@ const app = Vue.createApp({
     addTodo() {
         if (this.newTodo.trim() !== '') {
             this.listTodo.push(this.newTodo);
-            this.newTodo = ''; 
+            this.newTodo = '';
+            this.saveDataLocally(); 
         }
     },
     deleteTodo(index) {
         this.listTodo.splice(index, 1);
+        this.saveDataLocally();
     },
     deleteDone(index) {
         this.listDone.splice(index, 1);
+        this.saveDataLocally();
     },
     editTodo(index) {
         this.editingIndex = index;
         this.editedTodo = this.listTodo[index];
+        this.saveDataLocally();
     },
     saveEdit(index) {
         this.listTodo[index] = this.editedTodo;
-            this.cancelEdit();
+        this.cancelEdit();
+        this.saveDataLocally();
     },
     cancelEdit() {
         this.editingIndex = -1;
         this.editedTodo = '';
+        this.saveDataLocally();
     },
     markDone(index) {
         const task = this.listTodo.splice(index, 1)[0];
         this.listDone.push(task);
-
-        if (taskIndexInDone === -1) {
-            this.listDone.push(task);
-        }
+        this.saveDataLocally();
     },
     moveToTodo(index) {
         const moveBackTask = this.listDone.splice(index, 1)[0];
         this.listTodo.push(moveBackTask);
+        this.saveDataLocally();
+    },
+    saveDataLocally() {
+        localStorage.setItem('todoAppData', JSON.stringify ({
+            listTodo: this.listTodo,
+            listDone: this.listDone
+        }));
+    },
+    loadDataLocally() {
+        const storedData = localStorage.getItem('todoAppData');
+        if (storedData) {
+            const parsedData = JSON.parse(storedData);
+            this.listTodo = parsedData.listTodo || [];
+            this.listDone = parsedData.listDone || [];
+        }
     }
+},
+mounted() {
+    this.loadDataLocally();
 }
 });
 app.mount('#app');
