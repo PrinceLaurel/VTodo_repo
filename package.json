@@ -2,8 +2,9 @@
   "name": "vtodo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
