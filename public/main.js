@@ -1,11 +1,17 @@
 const app = Vue.createApp({
     data() {
         return {
-            newTodo: '',
+        newTodo: '',
         listTodo: [],
         editingIndex: -1,
         editedTodo: '',
-        listDone: []
+        listDone: [],
+        allTasksCompleted: false
+        }
+    },
+    computed: {
+        showDoneMessage() {
+            return this.listTodo.length === 0 && this.allTasksCompleted;
         }
     },
     methods: {
@@ -13,11 +19,13 @@ const app = Vue.createApp({
         if (this.newTodo.trim() !== '') {
             this.listTodo.push(this.newTodo);
             this.newTodo = '';
+            this.allTasksCompleted = false;
             this.saveDataLocally(); 
         }
     },
     deleteTodo(index) {
         this.listTodo.splice(index, 1);
+        this.allTasksCompleted = true;
         this.saveDataLocally();
     },
     deleteDone(index) {
@@ -30,11 +38,7 @@ const app = Vue.createApp({
         this.saveDataLocally();
     },
     saveEdit(index) {
-        this.listTodo[index] = this.editedTodo;
-        this.cancelEdit();
-        this.saveDataLocally();
-    },
-    cancelEdit() {
+        this.listTodo[index] = this.editedTodo;        
         this.editingIndex = -1;
         this.editedTodo = '';
         this.saveDataLocally();
@@ -42,6 +46,7 @@ const app = Vue.createApp({
     markDone(index) {
         const task = this.listTodo.splice(index, 1)[0];
         this.listDone.push(task);
+        this.allTasksCompleted = true;
         this.saveDataLocally();
     },
     moveToTodo(index) {
